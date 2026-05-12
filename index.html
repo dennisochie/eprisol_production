@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview | EPRISOL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <style>
+        :root {
+            --red: #c1121f;
+            --red-dark: #8b0d17;
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface2: #1e2530;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-top: 80px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header { margin-bottom: 2.5rem; }
+        .section-header .label {
+            display: inline-block;
+            background: rgba(193,18,31,0.15);
+            color: var(--red);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 50px;
+            border: 1px solid rgba(193,18,31,0.3);
+            margin-bottom: 0.75rem;
+        }
+        .section-header h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.15;
+        }
+        .section-header p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 560px;
+        }
+
+        /* ===== HERO SLIDER ===== */
+        .hero-slider {
+            position: relative;
+            height: 75vh;
+            min-height: 480px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .slides-container { position: relative; width: 100%; height: 100%; }
+
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 0.9s ease-in-out;
+        }
+        .slide::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        .slide.active { opacity: 1; z-index: 1; }
+
+        .hero-overlay {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center; color: #fff;
+            z-index: 10; padding: 0 20px; width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(193,18,31,0.85);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-overlay h1 {
+            font-size: 3.6rem; font-weight: 800;
+            margin-bottom: 1rem; line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay p {
+            font-size: 1.15rem; margin-bottom: 2rem;
+            max-width: 680px; margin-left: auto; margin-right: auto;
+            color: rgba(255,255,255,0.88);
+        }
+
+        .cta-buttons .btn { margin: 0.4rem; font-weight: 700; font-family: 'Barlow', sans-serif; }
+
+        .btn-primary { background-color: var(--red); border: none; }
+        .btn-primary:hover { background-color: var(--red-dark); }
+        .btn-outline-light:hover { background-color: rgba(255,255,255,0.15); color: #fff; }
+
+        .hero-stats {
+            position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 2rem; z-index: 10;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 12px 24px;
+            text-align: center;
+        }
+        .hero-stat .num { font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1; font-family: 'Barlow Condensed', sans-serif; }
+        .hero-stat .lbl { font-size: 0.72rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; }
+
+        .arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: 1.5rem; background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff; padding: 0.6rem 1rem; cursor: pointer;
+            z-index: 2; border-radius: 8px; transition: background 0.2s;
+        }
+        .arrow:hover { background: var(--red); }
+        .arrow.left { left: 16px; }
+        .arrow.right { right: 16px; }
+
+        /* ===== WHY CHOOSE US ===== */
+        .why-us { background: var(--surface); border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0; }
+        .why-card {
+            display: flex; gap: 1.2rem; align-items: flex-start;
+            background: var(--surface2); border-radius: 12px;
+            padding: 1.5rem; border: 1px solid var(--border);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .why-card:hover { border-color: rgba(193,18,31,0.4); transform: translateY(-3px); }
+        .why-icon {
+            flex-shrink: 0; width: 52px; height: 52px;
+            background: rgba(193,18,31,0.12); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--red);
+        }
+        .why-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .why-card p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+        /* ===== SERVICES SECTION ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+        .service-card {
+            background: var(--surface); padding: 0; border-radius: 14px;
+            overflow: hidden; border: 1px solid var(--border);
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .service-card:hover { border-color: rgba(193,18,31,0.45); transform: translateY(-4px); }
+        .service-card img {
+            width: 100%; height: 200px; object-fit: cover; display: block;
+        }
+        .service-card-body { padding: 1.4rem; }
+        .service-card h3 { color: var(--red); margin-bottom: 0.4rem; font-size: 1.3rem; }
+        .service-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .service-tag {
+            display: inline-block; font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            background: rgba(193,18,31,0.12); color: var(--red);
+            border: 1px solid rgba(193,18,31,0.25);
+            padding: 3px 10px; border-radius: 50px; margin-right: 4px; margin-bottom: 4px;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .process-section { background: var(--surface); border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0; }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; position: relative; }
+        .process-step {
+            text-align: center; padding: 2rem 1.5rem;
+            background: var(--surface2); border-radius: 12px;
+            border: 1px solid var(--border); position: relative;
+        }
+        .step-number {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--red); color: #fff;
+            font-size: 1.3rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; font-family: 'Barlow Condensed', sans-serif;
+        }
+        .process-step h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .process-step p { color: var(--muted); font-size: 0.88rem; margin: 0; }
+
+        /* ===== EQUIPMENT SECTION ===== */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .equip-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.8rem 1.5rem; text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .equip-card:hover { border-color: rgba(193,18,31,0.4); transform: translateY(-3px); }
+        .equip-icon { font-size: 2.4rem; color: var(--red); margin-bottom: 1rem; }
+        .equip-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .equip-card p { color: var(--muted); font-size: 0.88rem; margin: 0; }
+
+        /* ===== INDUSTRIES ===== */
+        .industries-section { background: var(--surface); border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0; }
+        .industry-pills { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .industry-pill {
+            display: flex; align-items: center; gap: 0.7rem;
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 10px; padding: 0.9rem 1.4rem;
+            font-size: 0.95rem; font-weight: 600;
+            transition: border-color 0.2s, background 0.2s;
+            cursor: default;
+        }
+        .industry-pill:hover { border-color: rgba(193,18,31,0.4); background: rgba(193,18,31,0.06); }
+        .industry-pill i { color: var(--red); font-size: 1.1rem; }
+
+        /* ===== STATS BANNER ===== */
+        .stats-banner {
+            background: linear-gradient(135deg, var(--red) 0%, #7a0a12 100%);
+            border-radius: 16px; padding: 3rem 2rem; margin: 3rem 0;
+        }
+        .stats-banner .stat-item { text-align: center; }
+        .stats-banner .stat-num { font-size: 3rem; font-weight: 800; color: #fff; font-family: 'Barlow Condensed', sans-serif; line-height: 1; }
+        .stats-banner .stat-label { color: rgba(255,255,255,0.78); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+        .testimonial-card {
+            background: var(--surface); padding: 2rem; border-radius: 14px;
+            border: 1px solid var(--border); position: relative;
+        }
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute; top: 12px; left: 20px;
+            font-size: 5rem; color: rgba(193,18,31,0.2);
+            font-family: Georgia, serif; line-height: 1;
+        }
+        .stars { color: #f4c430; font-size: 0.85rem; margin-bottom: 0.8rem; }
+        .testimonial-text { font-style: italic; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar {
+            background: var(--red); color: #fff; width: 46px; height: 46px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+        }
+        .author-info h4 { margin: 0; font-size: 1rem; font-weight: 700; }
+        .author-info p { margin: 0; font-size: 0.82rem; color: var(--muted); }
+
+        /* ===== FAQ ===== */
+        .faq-section { margin: 3rem 0; }
+        .faq-item {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 10px; margin-bottom: 0.8rem; overflow: hidden;
+        }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            color: var(--text); font-family: 'Barlow', sans-serif;
+            font-size: 1rem; font-weight: 600;
+            padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--red); }
+        .faq-question i { color: var(--red); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-question.open i { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s;
+            color: var(--muted); font-size: 0.93rem; line-height: 1.7;
+            padding: 0 1.5rem;
+        }
+        .faq-answer.open { max-height: 300px; padding: 0 1.5rem 1.2rem; }
+
+        /* ===== PRICING SECTION ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+        .pricing-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 14px; padding: 2rem; text-align: center;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+        .pricing-card:hover { transform: translateY(-4px); }
+        .pricing-card.featured { border-color: var(--red); }
+        .pricing-badge {
+            background: var(--red); color: #fff;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; padding: 4px 14px; border-radius: 50px;
+            display: inline-block; margin-bottom: 1.2rem;
+        }
+        .pricing-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.4rem; }
+        .pricing-card .price { font-size: 2.8rem; font-weight: 800; color: var(--red); font-family: 'Barlow Condensed', sans-serif; line-height: 1; margin: 0.8rem 0; }
+        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+        .pricing-card .desc { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
+        .pricing-features { list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; }
+        .pricing-features li { padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features li i { color: var(--red); font-size: 0.85rem; }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: var(--surface); border: 1px solid rgba(193,18,31,0.25);
+            border-radius: 16px; padding: 4rem 2rem; text-align: center; margin: 3rem 0;
+        }
+        .cta-section h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta-section p { color: var(--muted); font-size: 1.05rem; max-width: 560px; margin: 0 auto 2rem; }
+
+        /* ===== CLIENTS SECTION ===== */
+        .clients-section { margin: 3rem 0; }
+        .clients-strip {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            align-items: center; justify-content: center;
+        }
+        .client-badge {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.8rem 1.6rem;
+            font-size: 0.88rem; font-weight: 700; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.06em;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .client-badge:hover { color: var(--text); border-color: rgba(193,18,31,0.35); }
+
+        /* ===== CONTACT BANNER ===== */
+        .contact-strip {
+            display: flex; flex-wrap: wrap; gap: 1.2rem;
+            background: var(--surface2); border-radius: 12px; padding: 1.8rem 2rem;
+            align-items: center; justify-content: space-between;
+            border: 1px solid var(--border); margin: 3rem 0;
+        }
+        .contact-strip .info { display: flex; align-items: center; gap: 1rem; }
+        .contact-strip .info i { color: var(--red); font-size: 1.5rem; }
+        .contact-strip .info h5 { margin: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+        .contact-strip .info p { margin: 0; font-weight: 600; font-size: 0.95rem; }
+
+        /* Scroll-to-top */
+        .scroll-top {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--red); color: #fff; border: none;
+            padding: 12px 16px; border-radius: 50%; font-size: 20px;
+            cursor: pointer; display: none; z-index: 999;
+            transition: background 0.2s;
+        }
+        .scroll-top:hover { background: var(--red-dark); }
+        .scroll-top.visible { display: inline-block; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-overlay h1 { font-size: 2.6rem; }
+            .hero-stats { gap: 1rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-overlay h1 { font-size: 2rem; }
+            .hero-overlay p { font-size: 0.95rem; }
+            .hero-stats { display: none; }
+            .cta-buttons .btn { display: block; width: 80%; margin: 0.4rem auto; }
+            .stats-banner .stat-num { font-size: 2.2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-overlay h1 { font-size: 1.6rem; }
+        }
+        .equip-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+
+<main class="container py-3">
+
+    <!-- ===== HERO SLIDER ===== -->
+    <section class="hero-slider mb-5" id="home">
+        <div class="slides-container">
+            <div class="slide active" style="background-image: url('assets/images/image1.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/images/image2.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/images/image3.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/images/image4.jpg');"></div>
+        </div>
+
+        <div class="hero-overlay">
+            <span class="hero-badge">✦ Professional Cleaning Services</span>
+            <h1>Your Trusted Cleaning<br>Partner in Kenya</h1>
+            <p>Delivering world-class warehouse, office, carpet, and industrial cleaning solutions with state-of-the-art equipment and a dedicated team.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary btn-lg px-4">Get a Free Quote</a>
+                <a href="services.html" class="btn btn-outline-light btn-lg px-4">Our Services</a>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="num">500+</div><div class="lbl">Projects Done</div></div>
+            <div class="hero-stat"><div class="num">10+</div><div class="lbl">Years Experience</div></div>
+            <div class="hero-stat"><div class="num">200+</div><div class="lbl">Happy Clients</div></div>
+            <div class="hero-stat"><div class="num">24/7</div><div class="lbl">Support</div></div>
+        </div>
+
+        <button class="arrow left" id="prevSlide">&#10094;</button>
+        <button class="arrow right" id="nextSlide">&#10095;</button>
+    </section>
+
+    <!-- ===== WHY CHOOSE EPRISOL ===== -->
+    <section class="why-us" id="why-us">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Why EPRISOL</span>
+            <h2>Cleaning Done the Right Way</h2>
+            <p>We bring professionalism, precision, and care to every job — no matter the size or complexity.</p>
+        </div>
+        <div class="row g-3 mt-2">
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-medal"></i></div>
+                    <div>
+                        <h4>Certified Professionals</h4>
+                        <p>Our team is trained, certified, and experienced in industrial and commercial cleaning standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                        <h4>Eco-Friendly Products</h4>
+                        <p>We use environmentally safe cleaning agents that are tough on dirt but gentle on surfaces and the planet.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <h4>Punctual & Reliable</h4>
+                        <p>We show up on time, every time. Our scheduling system ensures zero disruption to your operations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <h4>Fully Insured</h4>
+                        <p>EPRISOL carries comprehensive liability insurance, giving you complete peace of mind on every assignment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="my-5" id="services">
+        <div class="section-header">
+            <span class="label">What We Offer</span>
+            <h2>Our Core Services</h2>
+            <p>Professional cleaning solutions tailored to offices, warehouses, commercial spaces, and residential properties.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="assets/images/Carpet_Cleaning.jpg" alt="Carpet Cleaning">
+                <div class="service-card-body">
+                    <h3>Carpet Cleaning</h3>
+                    <p>Deep extraction cleaning using Pro Carpet machines for fast drying and removal of deep-seated dirt, allergens, and stains from all carpet types.</p>
+                    <span class="service-tag">Extraction</span>
+                    <span class="service-tag">Stain Removal</span>
+                    <span class="service-tag">Fast Dry</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/images/floor_cleaning.jpg" alt="Floor Cleaning">
+                <div class="service-card-body">
+                    <h3>Floor Cleaning & Polishing</h3>
+                    <p>Rotating brushes and specialized scrubbers efficiently clean, strip, and polish marble, tiles, concrete, vinyl, and hardwood floors.</p>
+                    <span class="service-tag">Polishing</span>
+                    <span class="service-tag">Scrubbing</span>
+                    <span class="service-tag">Stripping</span>
+                </div>
+            </div>
+
+            <!-- <div class="service-card">
+                <img src="assets/images/sofa vacuuming.jpg" alt="Sofa Vacuuming">
+                <div class="service-card-body">
+                    <h3>Sofa Vacuuming</h3>
+                    <p>Deep vacuum cleaning of sofas and upholstered furniture to remove dust, debris, and allergens, restoring freshness and maintaining fabric quality.</p>
+                    <span class="service-tag">High-Reach</span>
+                    <span class="service-tag">Streak-Free</span>
+                </div>
+            </div> -->
+
+            <div class="service-card">
+                <img src="assets/images/office_cleaning.jpg" alt="Office Cleaning">
+                <div class="service-card-body">
+                    <h3>Office Cleaning</h3>
+                    <p>Comprehensive daily, weekly, or monthly office cleaning packages including workstations, common areas, kitchens, and restrooms.</p>
+                    <span class="service-tag">Daily/Weekly</span>
+                    <span class="service-tag">Sanitization</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/images/warehouse cleaning.jpg" alt="Warehouse Cleaning">
+                <div class="service-card-body">
+                    <h3>Warehouse Cleaning</h3>
+                    <p>Industrial-grade deep cleaning for warehouses, manufacturing plants, and storage facilities, including high-bay cleaning and dust control.</p>
+                    <span class="service-tag">Industrial</span>
+                    <span class="service-tag">High-Bay</span>
+                    <span class="service-tag">Dust Control</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/images/post_construction.jpg" alt="Post-Construction Cleaning">
+                <div class="service-card-body">
+                    <h3>Post-Construction Cleaning</h3>
+                    <p>Detailed cleaning after construction or renovation — removing debris, dust, paint splatters, and adhesives to make the space move-in ready.</p>
+                    <span class="service-tag">Debris Removal</span>
+                    <span class="service-tag">Detail Clean</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/images/upholstery.jpg" alt="Upholstery Cleaning">
+                <div class="service-card-body">
+                    <h3>Upholstery Cleaning</h3>
+                    <p>Safe and effective cleaning of sofas, chairs, curtains, and fabric furniture using low-moisture technology that preserves material integrity.</p>
+                    <span class="service-tag">Low-Moisture</span>
+                    <span class="service-tag">Fabric-Safe</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/images/disinfection.jpg" alt="Disinfection Services">
+                <div class="service-card-body">
+                    <h3>Disinfection & Sanitization</h3>
+                    <p>Certified disinfection services using hospital-grade products. Ideal for healthcare facilities, schools, and high-traffic commercial spaces.</p>
+                    <span class="service-tag">Hospital-Grade</span>
+                    <span class="service-tag">Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="process-section" id="process">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Our Process</span>
+            <h2>How It Works</h2>
+            <p>A simple, transparent 4-step process designed to get your space sparkling with zero hassle.</p>
+        </div>
+        <div class="process-steps mt-4">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h4>Request a Quote</h4>
+                <p>Contact us via phone, email, or our online form. Tell us what you need and we'll get back to you within 2 hours.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h4>Site Assessment</h4>
+                <p>Our supervisor visits your premises to assess the scope, recommend the right service, and provide a detailed quote.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h4>Schedule & Clean</h4>
+                <p>We schedule at your preferred time — day, evening, or weekend. Our team arrives fully equipped and ready to work.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h4>Inspection & Sign-Off</h4>
+                <p>After the job, a quality check is performed with you present to ensure every standard is met before we sign off.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS BANNER ===== -->
+    <section class="stats-banner" id="stats">
+        <div class="row text-center g-4">
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">500+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">200+</div>
+                <div class="stat-label">Satisfied Clients</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Expert Technicians</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EQUIPMENT SECTION ===== -->
+    <section class="my-5" id="equipment">
+        <div class="section-header">
+            <span class="label">Our Equipment</span>
+            <h2>Professional-Grade Tools</h2>
+            <p>We invest in the best equipment to deliver results that exceed expectations, every single time.</p>
+        </div>
+        <div class="equipment-grid">
+           <div class="equip-card">
+            <img src="assets/images/scrubbing.png" alt="Post-Construction Cleaning" class="equip-img">
+         <h4>Pro Carpet Extractors</h4>
+         <p>
+        Powerful hot-water extraction machines that remove deep-seated dirt and dry carpets in record time.
+    </p>
+</div>
+            <div class="equip-card">
+                <img src="assets/images/scrubber.jpg" alt="Post-Construction Cleaning" class="equip-img">
+                <h4>Rotary Floor Scrubbers</h4>
+                <p>High-speed rotary machines for scrubbing, polishing, and stripping hard floor surfaces to a brilliant shine.</p>
+            </div>
+            <div class="equip-card">
+                <img src="assets/images/pressure.jpg" alt="Post-Construction Cleaning" class="equip-img">
+                <h4>Industrial Pressure Washers</h4>
+                <p>Heavy-duty pressure washers for exterior walls, parking lots, loading docks, and driveways.</p>
+            </div>
+            <div class="equip-card">
+                <img src="assets/images/vacuum.jpg" alt="Post-Construction Cleaning" class="equip-img">
+                <h4>HEPA Vacuum Systems</h4>
+                <p>Hospital-grade HEPA filter vacuums capturing 99.97% of airborne particles for superior air quality.</p>
+            </div>
+            <div class="equip-card">
+                <img src="assets/images/stem.jpg" alt="Post-Construction Cleaning" class="equip-img">
+                <h4>Steam Cleaning Units</h4>
+                <p>Chemical-free high-temperature steam cleaners for sanitizing tiles, grout, and hard surfaces.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INDUSTRIES WE SERVE ===== -->
+    <section class="industries-section" id="industries">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Industries</span>
+            <h2>Sectors We Serve</h2>
+            <p>From hospitality to healthcare, EPRISOL delivers reliable cleaning across all major industries in Kenya.</p>
+        </div>
+        <div class="industry-pills mt-4 justify-content-center">
+            <div class="industry-pill"><i class="fas fa-building"></i> Corporate Offices</div>
+            <div class="industry-pill"><i class="fas fa-warehouse"></i> Warehouses & Logistics</div>
+            <div class="industry-pill"><i class="fas fa-hospital"></i> Healthcare Facilities</div>
+            <div class="industry-pill"><i class="fas fa-utensils"></i> Hotels & Restaurants</div>
+            <div class="industry-pill"><i class="fas fa-school"></i> Schools & Universities</div>
+            <div class="industry-pill"><i class="fas fa-shopping-cart"></i> Retail & Supermarkets</div>
+            <div class="industry-pill"><i class="fas fa-industry"></i> Industrial Plants</div>
+            <div class="industry-pill"><i class="fas fa-plane"></i> Airports & Transport</div>
+            <div class="industry-pill"><i class="fas fa-home"></i> Residential Estates</div>
+            <div class="industry-pill"><i class="fas fa-church"></i> Religious Institutions</div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING SECTION ===== -->
+    <section class="my-5" id="pricing">
+        <div class="section-header">
+            <span class="label">Pricing</span>
+            <h2>Transparent Pricing Plans</h2>
+            <p>Choose the plan that suits your needs. All plans include our quality guarantee.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic Clean</h3>
+                <div class="price">KES 5,000 <span>/ visit</span></div>
+                <p class="desc">Ideal for small offices and residential units up to 100 sqm.</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> General surface cleaning</li>
+                    <li><i class="fas fa-check-circle"></i> Vacuuming & mopping</li>
+                    <li><i class="fas fa-check-circle"></i> Restroom sanitization</li>
+                    <li><i class="fas fa-check-circle"></i> Waste removal</li>
+                    <li><i class="fas fa-check-circle"></i> 1 revisit per month</li>
+                </ul>
+                <a href="contact.html" class="btn btn-outline-danger w-100">Book Now</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <span class="pricing-badge">Most Popular</span>
+                <h3>Professional</h3>
+                <div class="price">KES 15,000 <span>/ visit</span></div>
+                <p class="desc">Best for medium offices, showrooms, and commercial spaces up to 500 sqm.</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Everything in Basic</li>
+                    <li><i class="fas fa-check-circle"></i> Carpet deep extraction</li>
+                    <li><i class="fas fa-check-circle"></i> Floor scrubbing & polishing</li>
+                    <li><i class="fas fa-check-circle"></i> Window & glass cleaning</li>
+                    <li><i class="fas fa-check-circle"></i> 2 revisits per month</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated supervisor</li>
+                </ul>
+                <a href="contact.html" class="btn btn-primary w-100">Book Now</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom <span>quote</span></div>
+                <p class="desc">Tailored for large warehouses, hospitals, factories, and multi-site contracts.</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Everything in Professional</li>
+                    <li><i class="fas fa-check-circle"></i> Industrial equipment deployment</li>
+                    <li><i class="fas fa-check-circle"></i> Scheduled contract cleaning</li>
+                    <li><i class="fas fa-check-circle"></i> On-site team stationed</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated account manager</li>
+                    <li><i class="fas fa-check-circle"></i> SLA with response guarantee</li>
+                </ul>
+                <a href="contact.html" class="btn btn-outline-danger w-100">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="my-5" id="testimonials">
+        <div class="section-header">
+            <span class="label">Client Feedback</span>
+            <h2>What Our Clients Say</h2>
+            <p>Over 200 satisfied clients trust EPRISOL for their cleaning needs. Here's what a few have to say.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">EPRISOL transformed our office carpets completely. The extraction machines removed stains we thought were permanent. Professional, punctual, and the results were outstanding.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">CK</div>
+                    <div class="author-info"><h4>Philemon Gero</h4><p>Office Manager, Nairobi</p></div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">Their warehouse cleaning is thorough, efficient, and handled with industrial-grade equipment. The team was respectful of our operations and completed the job ahead of schedule.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">KM</div>
+                    <div class="author-info"><h4>Vincent Otieno</h4><p>Operations Lead, Mombasa Road</p></div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">Professional, timely, and results-driven. Our floors and carpets have never looked better. We now have EPRISOL on a monthly retainer — best decision we made.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DO</div>
+                    <div class="author-info"><h4>Dennis Ochieng</h4><p>Facility Manager, Westlands</p></div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">We hired EPRISOL for post-construction cleaning of our new branch. The attention to detail was remarkable. The space was spotless and ready for opening day without any delays.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AW</div>
+                    <div class="author-info"><h4>Amina Wanjiru</h4><p>Branch Manager, Karen</p></div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">The disinfection service EPRISOL provided for our clinic was top-notch. They used certified products and their team was well-trained in infection control protocols. Highly recommended.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JN</div>
+                    <div class="author-info"><h4>Dr. James Njoroge</h4><p>Clinic Director, Kileleshwa</p></div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">EPRISOL handles our 4-story office tower monthly. Their team is consistent, well-equipped, and the quality never drops. We renewed our annual contract without hesitation.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">FM</div>
+                    <div class="author-info"><h4>Pauline Njeri</h4><p>Property Manager, CBD Nairobi</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUSTED CLIENTS ===== -->
+    <section class="clients-section" id="clients">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Our Clients</span>
+            <h2>Trusted by Leading Organizations</h2>
+            <p>We are proud to serve a diverse portfolio of clients across Kenya.</p>
+        </div>
+        <div class="clients-strip mt-4">
+            <div class="client-badge">Obradleys Investment Ltd</div>
+            <div class="client-badge">Finix Casino-Hurlingham</div>
+            <div class="client-badge">Raddison Blu Hotel-Upper Hill</div>
+            <div class="client-badge">Sarova Hotel-Nairobi</div>
+            <div class="client-badge">Heavens Gate Church-Nakuru</div>
+           
+        </div>
+    </section>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <section class="faq-section my-5" id="faq">
+        <div class="section-header">
+            <span class="label">FAQ</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Have questions? We've got you covered. Reach out if you need more details.</p>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Do you bring your own cleaning equipment and supplies?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">Yes. EPRISOL arrives fully equipped with all necessary professional-grade machines, tools, and cleaning agents. You don't need to provide anything — just access to the premises.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                How far in advance should I book a cleaning session?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">We recommend booking at least 48 hours in advance for standard services. For large-scale or industrial cleaning, we suggest 3–5 days to ensure the right equipment and team size is allocated. Emergency bookings may be available subject to availability.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Are your cleaning products safe for children and pets?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">Absolutely. We prioritize eco-friendly, non-toxic cleaning agents that are safe for children, pets, and sensitive individuals. For specific medical environments, we can use hospital-grade disinfectants as required.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Do you offer contract or recurring cleaning services?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">Yes. We offer flexible maintenance contracts — daily, weekly, bi-weekly, or monthly. Contract clients receive priority scheduling, dedicated teams, discounted rates, and a designated account manager for seamless service delivery.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                What areas in Kenya do you serve?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">Our primary operations are in Nairobi and its environs. We also service clients in Mombasa, Nakuru, Eldoret, and Kisumu. For locations outside these areas, please contact us to discuss logistics and pricing.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                What if I'm not satisfied with the cleaning?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">Your satisfaction is guaranteed. If you're not happy with any aspect of the service, notify us within 24 hours and we will dispatch a team at no extra charge to address the issue to your satisfaction.</div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT STRIP ===== -->
+    <section class="contact-strip">
+        <div class="info">
+    <i class="fas fa-phone-alt"></i>
+        <div>
+            <h5>Call Us</h5>
+            <p>
+                <a href="tel:+254720025200" style="text-decoration:none; color:inherit;">
+                    +254 720 025 200
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="info">
+        <i class="fab fa-whatsapp"></i>
+        <div>
+            <h5>WhatsApp</h5>
+            <p>
+                <a href="https://wa.me/254720025200" target="_blank" style="text-decoration:none; color:inherit;">
+                    +254 720 025 200
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="info">
+        <i class="fas fa-envelope"></i>
+        <div>
+            <h5>Email Us</h5>
+            <p>
+                <a href="mailto:info@eprisol.co.ke" style="text-decoration:none; color:inherit;">
+                    info@eprisol.co.ke
+                </a>
+            </p>
+        </div>
+    </div>
+        <div class="info">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+                <h5>Our Location</h5>
+                <p>Nairobi, Kenya</p>
+            </div>
+        </div>
+        <div class="info">
+            <i class="fas fa-clock"></i>
+            <div>
+                <h5>Working Hours</h5>
+                <p>Mon – Sun: 7AM – 8PM</p>
+            </div>
+        </div>
+        <a href="contact.html" class="btn btn-primary px-4">Contact Us Today</a>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <span class="label">Get Started</span>
+        <h2>Ready for a Spotless Space?</h2>
+        <p>Join over 200 satisfied clients across Kenya. Let EPRISOL take cleaning off your hands — professionally, reliably, and affordably.</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-primary btn-lg px-5">Request a Free Quote</a>
+            <a href="tel:+254720025200" class="btn btn-outline-light btn-lg px-5"><i class="fas fa-phone-alt me-2"></i>Call Now</a>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Include Header & Footer -->
+<script src="js/include.js"></script>
+<script>
+    loadHTML("header", "partials/header.html");
+    loadHTML("footer", "partials/footer.html");
+</script>
+
+<script>
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hero Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length;
+
+    const showSlide = (index) => {
+        slides.forEach(s => s.classList.remove("active"));
+        currentSlide = (index + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add("active");
+    };
+
+    let autoSlide = setInterval(() => showSlide(currentSlide + 1), 4000);
+
+    document.getElementById("prevSlide").addEventListener("click", () => {
+        clearInterval(autoSlide);
+        showSlide(currentSlide - 1);
+        autoSlide = setInterval(() => showSlide(currentSlide + 1), 4000);
+    });
+    document.getElementById("nextSlide").addEventListener("click", () => {
+        clearInterval(autoSlide);
+        showSlide(currentSlide + 1);
+        autoSlide = setInterval(() => showSlide(currentSlide + 1), 4000);
+    });
+
+    // FAQ Toggle
+    function toggleFAQ(btn) {
+        const answer = btn.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('open'));
+        if (!isOpen) {
+            answer.classList.add('open');
+            btn.classList.add('open');
+        }
+    }
+</script>
+
+</body>
+</html>

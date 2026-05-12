@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Who We Are | EPRISOL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <style>
+        :root {
+            --red: #c1121f;
+            --red-dark: #8b0d17;
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface2: #1e2530;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-top: 80px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header { margin-bottom: 2.5rem; }
+        .section-header .label {
+            display: inline-block;
+            background: rgba(193,18,31,0.15);
+            color: var(--red);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 50px;
+            border: 1px solid rgba(193,18,31,0.3);
+            margin-bottom: 0.75rem;
+        }
+        .section-header h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.15;
+        }
+        .section-header p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 560px;
+        }
+
+        /* ===== ABOUT HERO ===== */
+        .about-hero {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+            border-radius: 16px;
+            padding: 4.5rem 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 320px; height: 320px;
+            background: rgba(193,18,31,0.07);
+            border-radius: 50%;
+        }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -50px;
+            width: 220px; height: 220px;
+            background: rgba(193,18,31,0.05);
+            border-radius: 50%;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(193,18,31,0.85);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 1.2rem;
+        }
+        .about-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .about-hero p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 640px;
+            margin-bottom: 2rem;
+        }
+        .hero-pills { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .hero-pill {
+            display: flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 1.1rem;
+            font-size: 0.88rem; font-weight: 600;
+        }
+        .hero-pill i { color: var(--red); }
+
+        /* ===== STORY SECTION ===== */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        @media (max-width: 992px) { .story-section { grid-template-columns: 1fr; } }
+        .story-text h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; }
+        .story-text p { color: var(--muted); margin-bottom: 1rem; }
+        .story-text .highlight {
+            border-left: 3px solid var(--red);
+            padding-left: 1.2rem;
+            margin: 1.5rem 0;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text);
+        }
+        .story-image-wrap {
+            position: relative;
+        }
+        .story-image-wrap img {
+            width: 100%; border-radius: 14px; display: block;
+            object-fit: cover; height: 420px;
+        }
+        .story-badge-overlay {
+            position: absolute; bottom: 24px; left: 24px;
+            background: var(--red);
+            color: #fff;
+            border-radius: 12px;
+            padding: 1.2rem 1.6rem;
+            text-align: center;
+        }
+        .story-badge-overlay .num {
+            font-size: 2.2rem; font-weight: 800;
+            font-family: 'Barlow Condensed', sans-serif;
+            line-height: 1;
+        }
+        .story-badge-overlay .lbl {
+            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
+            opacity: 0.9;
+        }
+
+        /* ===== VISION / MISSION / VALUES ===== */
+        .vmv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+        .vmv-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .vmv-card:hover { border-color: rgba(193,18,31,0.45); transform: translateY(-4px); }
+        .vmv-icon {
+            width: 60px; height: 60px;
+            background: rgba(193,18,31,0.12);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; color: var(--red);
+            margin-bottom: 1.2rem;
+        }
+        .vmv-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.6rem; color: var(--red); }
+        .vmv-card p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+        .vmv-card img {
+            width: 100%; height: 160px; object-fit: cover;
+            border-radius: 10px; margin-bottom: 1.2rem; display: block;
+        }
+
+        /* ===== STATS BANNER ===== */
+        .stats-banner {
+            background: linear-gradient(135deg, var(--red) 0%, #7a0a12 100%);
+            border-radius: 16px; padding: 3rem 2rem; margin: 3rem 0;
+        }
+        .stats-banner .stat-item { text-align: center; }
+        .stats-banner .stat-num {
+            font-size: 3rem; font-weight: 800; color: #fff;
+            font-family: 'Barlow Condensed', sans-serif; line-height: 1;
+        }
+        .stats-banner .stat-label {
+            color: rgba(255,255,255,0.78); font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px;
+        }
+
+        /* ===== CORE VALUES ===== */
+        .values-section {
+            background: var(--surface);
+            border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .value-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .value-card:hover { border-color: rgba(193,18,31,0.4); transform: translateY(-3px); }
+        .value-icon { font-size: 2.2rem; color: var(--red); margin-bottom: 0.9rem; }
+        .value-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .value-card p { color: var(--muted); font-size: 0.88rem; margin: 0; }
+
+        /* ===== TEAM SECTION ===== */
+        .team-section { margin: 3rem 0; }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+        }
+        .team-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            text-align: center;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .team-card:hover { border-color: rgba(193,18,31,0.45); transform: translateY(-4px); }
+        .team-avatar {
+            width: 100%; height: 200px;
+            background: var(--surface2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; color: rgba(193,18,31,0.4);
+        }
+        .team-card-body { padding: 1.4rem; }
+        .team-card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .team-card .role {
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--red); margin-bottom: 0.6rem;
+        }
+        .team-card p { color: var(--muted); font-size: 0.88rem; margin: 0; }
+
+        /* ===== WHY CHOOSE US ===== */
+        .why-us { background: var(--surface); border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0; }
+        .why-card {
+            display: flex; gap: 1.2rem; align-items: flex-start;
+            background: var(--surface2); border-radius: 12px;
+            padding: 1.5rem; border: 1px solid var(--border);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .why-card:hover { border-color: rgba(193,18,31,0.4); transform: translateY(-3px); }
+        .why-icon {
+            flex-shrink: 0; width: 52px; height: 52px;
+            background: rgba(193,18,31,0.12); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--red);
+        }
+        .why-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .why-card p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+        /* ===== MILESTONES ===== */
+        .milestones-section {
+            background: var(--surface);
+            border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0;
+        }
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px; background: rgba(193,18,31,0.3);
+        }
+        .timeline-item {
+            position: relative; padding: 0 0 2rem 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute; left: -2.45rem; top: 6px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--red); border: 2px solid var(--bg);
+        }
+        .timeline-item .year {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--red); margin-bottom: 0.3rem;
+        }
+        .timeline-item h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .timeline-item p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+        /* ===== CERTIFICATIONS ===== */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .cert-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 1.4rem;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .cert-card:hover { border-color: rgba(193,18,31,0.4); transform: translateY(-3px); }
+        .cert-icon { font-size: 2.4rem; color: var(--red); margin-bottom: 1rem; }
+        .cert-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .cert-card p { color: var(--muted); font-size: 0.85rem; margin: 0; }
+
+        /* ===== INDUSTRIES ===== */
+        .industries-section { background: var(--surface); border-radius: 16px; padding: 3rem 2.5rem; margin: 3rem 0; }
+        .industry-pills { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .industry-pill {
+            display: flex; align-items: center; gap: 0.7rem;
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 10px; padding: 0.9rem 1.4rem;
+            font-size: 0.95rem; font-weight: 600;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .industry-pill:hover { border-color: rgba(193,18,31,0.4); background: rgba(193,18,31,0.06); }
+        .industry-pill i { color: var(--red); font-size: 1.1rem; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+        .testimonial-card {
+            background: var(--surface); padding: 2rem; border-radius: 14px;
+            border: 1px solid var(--border); position: relative;
+        }
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute; top: 12px; left: 20px;
+            font-size: 5rem; color: rgba(193,18,31,0.2);
+            font-family: Georgia, serif; line-height: 1;
+        }
+        .stars { color: #f4c430; font-size: 0.85rem; margin-bottom: 0.8rem; }
+        .testimonial-text { font-style: italic; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar {
+            background: var(--red); color: #fff; width: 46px; height: 46px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+        }
+        .author-info h4 { margin: 0; font-size: 1rem; font-weight: 700; }
+        .author-info p { margin: 0; font-size: 0.82rem; color: var(--muted); }
+
+        /* ===== CLIENTS ===== */
+        .clients-strip {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            align-items: center; justify-content: center;
+        }
+        .client-badge {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.8rem 1.6rem;
+            font-size: 0.88rem; font-weight: 700; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.06em;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .client-badge:hover { color: var(--text); border-color: rgba(193,18,31,0.35); }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: var(--surface); border: 1px solid rgba(193,18,31,0.25);
+            border-radius: 16px; padding: 4rem 2rem; text-align: center; margin: 3rem 0;
+        }
+        .cta-section h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta-section p { color: var(--muted); font-size: 1.05rem; max-width: 560px; margin: 0 auto 2rem; }
+        .cta-buttons .btn { margin: 0.4rem; font-weight: 700; font-family: 'Barlow', sans-serif; }
+        .btn-primary { background-color: var(--red); border: none; }
+        .btn-primary:hover { background-color: var(--red-dark); }
+        .btn-outline-light:hover { background-color: rgba(255,255,255,0.15); color: #fff; }
+
+        /* Scroll-to-top */
+        .scroll-top {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--red); color: #fff; border: none;
+            padding: 12px 16px; border-radius: 50%; font-size: 20px;
+            cursor: pointer; display: none; z-index: 999;
+            transition: background 0.2s;
+        }
+        .scroll-top:hover { background: var(--red-dark); }
+        .scroll-top.visible { display: inline-block; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .about-hero h1 { font-size: 2.2rem; }
+            .stats-banner .stat-num { font-size: 2.2rem; }
+        }
+        @media (max-width: 480px) {
+            .about-hero h1 { font-size: 1.8rem; }
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .team-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+
+        .team-card:hover {
+            border-color: rgba(193,18,31,0.45);
+            transform: translateY(-4px);
+        }
+
+        /* IMAGE replaces avatar */
+       .team-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;        /* fills the area properly */
+        object-position: center;  /* keeps focus centered */
+        display: block;
+    }
+
+        /* fallback if no image is used */
+        .team-avatar {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(193,18,31,0.08);
+            color: var(--red);
+            font-size: 3rem;
+        }
+
+        /* body */
+        .team-card-body {
+            padding: 1.4rem;
+        }
+
+        .team-card h4 {
+            color: var(--red);
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .team-card .role {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: rgba(193,18,31,0.12);
+            color: var(--red);
+            border: 1px solid rgba(193,18,31,0.25);
+            padding: 3px 10px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+        }
+
+        .team-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+
+<main class="container py-3">
+
+    <!-- ===== ABOUT HERO ===== -->
+    <section class="about-hero mb-5" id="home">
+        <span class="hero-badge">✦ About EPRISOL</span>
+        <h1>Kenya's Trusted<br>Cleaning Experts</h1>
+        <p>For over a decade, EPRISOL has been delivering world-class professional cleaning services to offices, warehouses, commercial spaces, and institutions across Kenya — with integrity, precision, and care.</p>
+        <div class="hero-pills">
+            <div class="hero-pill"><i class="fas fa-medal"></i> Certified Professionals</div>
+            <div class="hero-pill"><i class="fas fa-leaf"></i> Eco-Friendly Products</div>
+            <div class="hero-pill"><i class="fas fa-shield-alt"></i> Fully Insured</div>
+            <div class="hero-pill"><i class="fas fa-clock"></i> 10+ Years of Experience</div>
+        </div>
+    </section>
+
+    <!-- ===== OUR STORY ===== -->
+    <section class="story-section my-5" id="story">
+        <div class="story-text">
+            <div class="section-header">
+                <span class="label">Our Story</span>
+                <h2>Built on a Commitment to Cleanliness</h2>
+            </div>
+            <p>EPRISOL was founded with a single conviction: that every workspace deserves to be clean, safe, and professionally maintained. What began as a small team serving a handful of offices in Nairobi has grown into one of Kenya's most respected commercial and industrial cleaning companies.</p>
+            <p>Over the years, we have invested heavily in state-of-the-art equipment, rigorous staff training, and eco-friendly cleaning solutions — ensuring that every client receives a service that is not just clean, but truly exceptional.</p>
+            <p>Today, EPRISOL serves over 200 clients across Nairobi, Mombasa, Nakuru, Eldoret, and Kisumu, with a team of over 15 expert technicians who are trained, certified, and passionate about their craft.</p>
+            <div class="highlight">
+                "We don't just clean spaces — we create healthier, safer environments where people thrive."
+            </div>
+            <a href="contact.html" class="btn btn-primary px-4 mt-2">Work With Us</a>
+        </div>
+        <div class="story-image-wrap">
+            <img src="assets/images/image1.jpg" alt="EPRISOL team at work">
+            <div class="story-badge-overlay">
+                <div class="num">10+</div>
+                <div class="lbl">Years of Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VISION / MISSION / COMMITMENT ===== -->
+    <section class="my-5" id="vision-mission">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Who We Are</span>
+            <h2>Vision, Mission & Commitment</h2>
+            <p>The principles that guide every decision we make and every service we deliver.</p>
+        </div>
+        <div class="vmv-grid">
+            <div class="vmv-card">
+                <img src="assets/images/about1.png" alt="Vision">
+                <!-- <div class="vmv-icon"><i class="fas fa-eye"></i></div> -->
+                <h3>Our Vision</h3>
+                <p>To be the most trusted provider of professional cleaning services for offices and warehouses in Kenya, delivering impeccable results every time.</p>
+            </div>
+            <div class="vmv-card">
+                <img src="assets/images/about2.jpeg" alt="Mission">
+                <!-- <div class="vmv-icon"><i class="fas fa-bullseye"></i></div> -->
+                <h3>Our Mission</h3>
+                <p>To deliver reliable, high-quality cleaning solutions using trained personnel and modern equipment, ensuring clean and healthy environments for all our clients.</p>
+            </div>
+            <div class="vmv-card">
+                <img src="assets/images/about3.jpeg" alt="Commitment">
+                <!-- <div class="vmv-icon"><i class="fas fa-handshake"></i></div> -->
+                <h3>Our Commitment</h3>
+                <p>We uphold integrity, professionalism, and excellence in every cleaning project, ensuring complete satisfaction and long-term partnerships with our clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS BANNER ===== -->
+    <section class="stats-banner" id="stats">
+        <div class="row text-center g-4">
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num" data-count="500">0+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num" data-count="200">0+</div>
+                <div class="stat-label">Satisfied Clients</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num" data-count="10">0+</div>
+                <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num" data-count="15">0+</div>
+                <div class="stat-label">Expert Technicians</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CORE VALUES ===== -->
+    <section class="values-section" id="values">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Core Values</span>
+            <h2>What Drives Us Every Day</h2>
+            <p>Our values are not just words — they are the foundation of every job we undertake and every relationship we build.</p>
+        </div>
+        <div class="values-grid mt-4">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-medal"></i></div>
+                <h4>Excellence</h4>
+                <p>We hold ourselves to the highest standards of quality in every task, no matter the size or scope of the job.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-balance-scale"></i></div>
+                <h4>Integrity</h4>
+                <p>We are honest, transparent, and accountable in all our dealings — with clients, partners, and our team members.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-clock"></i></div>
+                <h4>Reliability</h4>
+                <p>We show up when we say we will, complete every job on schedule, and honour every commitment we make.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                <h4>Sustainability</h4>
+                <p>We use eco-friendly, non-toxic products that protect people and the environment without compromising on results.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h4>Teamwork</h4>
+                <p>Our strength lies in our people. We invest in training, welfare, and growth of our technicians and staff.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-smile"></i></div>
+                <h4>Client First</h4>
+                <p>Every decision we make starts with one question: how does this serve our clients better?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE EPRISOL ===== -->
+    <section class="why-us" id="why-us">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Why EPRISOL</span>
+            <h2>What Sets Us Apart</h2>
+            <p>There are many cleaning companies in Kenya. Here's why 200+ clients choose EPRISOL and keep coming back.</p>
+        </div>
+        <div class="row g-3 mt-2">
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-medal"></i></div>
+                    <div>
+                        <h4>Certified Professionals</h4>
+                        <p>Our team is trained, certified, and experienced in industrial and commercial cleaning standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                        <h4>Eco-Friendly Products</h4>
+                        <p>We use environmentally safe cleaning agents that are tough on dirt but gentle on surfaces and the planet.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-cogs"></i></div>
+                    <div>
+                        <h4>Industrial-Grade Equipment</h4>
+                        <p>We invest in the best professional machines — extractors, scrubbers, HEPA vacuums, and steam cleaners.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <h4>Fully Insured</h4>
+                        <p>EPRISOL carries comprehensive liability insurance, giving you complete peace of mind on every assignment.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <h4>Punctual & Reliable</h4>
+                        <p>We show up on time, every time. Our scheduling system ensures zero disruption to your operations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-headset"></i></div>
+                    <div>
+                        <h4>Dedicated Support</h4>
+                        <p>Every client has access to a dedicated account manager and 24/7 emergency support line.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <div>
+                        <h4>Quality Guarantee</h4>
+                        <p>Not satisfied? We return at no extra charge within 24 hours to address any concerns — guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                    <div>
+                        <h4>Long-Term Partnerships</h4>
+                        <p>We don't just complete jobs — we build lasting relationships that grow with your business needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUR TEAM ===== -->
+    <section class="team-section my-5" id="team">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Our People</span>
+            <h2>The Team Behind the Shine</h2>
+            <p>EPRISOL's strength is its people. Every technician and manager is trained, vetted, and committed to excellence.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                 <img src="assets/images/relations manager.png" alt="CEO">
+                <div class="team-card-body">
+                    <h4>Caleb Kimeu</h4>
+                    <h4>Operations Director</h4>
+                    <div class="role">Leadership</div>
+                    <p>Oversees all service delivery, quality control, and client relations across every contract.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="assets/images/supervisor.png" alt="Supervisor">
+                <div class="team-card-body">
+                    <h4>James Maithya</h4>
+                    <h4>Head Supervisor</h4>
+                    <div class="role">Field Operations</div>
+                    <p>Leads on-site teams, performs quality inspections, and ensures every job meets EPRISOL's standards.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                 <img src="assets/images/specialist.png" alt="specialist">
+                <div class="team-card-body">
+                    <h4>Kelvin Mwandikwa</h4>
+                    <h4>Lead Technicians</h4>
+                    <div class="role">Specialist</div>
+                    <p>Certified in carpet extraction, floor polishing, industrial cleaning, and disinfection protocols.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                 <img src="assets/images/relations manager.png" alt="customer service">
+               <div class="team-card-body">
+                <h4>Pauline Nzisa</h4>
+                <h4>Customer Support Lead</h4>
+                <div class="role">Client Services</div>
+                <p>Handles client inquiries, service coordination, and ensures smooth communication across all projects.</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MILESTONES ===== -->
+    <section class="milestones-section" id="milestones">
+        <div class="section-header">
+            <span class="label">Our Journey</span>
+            <h2>Key Milestones</h2>
+            <p>From a small team with big ambitions to one of Kenya's leading cleaning companies.</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">Founded</div>
+                        <h4>EPRISOL Is Established</h4>
+                        <p>EPRISOL was founded in Nairobi with a small dedicated team and a focus on delivering honest, high-quality office cleaning services in the month of November 2016.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Early Growth</div>
+                        <h4>First 50 Corporate Clients</h4>
+                        <p>Word-of-mouth referrals and consistently excellent results drive rapid growth, bringing our first 50 corporate clients on board.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Expansion</div>
+                        <h4>Industrial & Warehouse Services Launched</h4>
+                        <p>We invest in heavy-duty industrial equipment and expand our offering to warehouses, factories, and logistics facilities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">Nationwide</div>
+                        <h4>Operations Expand Beyond Nairobi</h4>
+                        <p>EPRISOL extends services to Mombasa, Nakuru, Eldoret, and Kisumu, serving clients across Kenya's major commercial centres.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Certification</div>
+                        <h4>Team Certified in Infection Control</h4>
+                        <p>All senior technicians complete certified training in disinfection and infection control, positioning EPRISOL to serve healthcare clients.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Today</div>
+                        <h4>500+ Projects, 200+ Clients</h4>
+                        <p>EPRISOL continues to grow, with over 500 completed projects, a team of 15+ experts, and a commitment to raising the standard for cleaning in Kenya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CERTIFICATIONS & STANDARDS ===== -->
+    <section class="my-5" id="certifications">
+        <div class="section-header">
+            <span class="label">Standards</span>
+            <h2>Certifications & Quality Standards</h2>
+            <p>We hold ourselves to the highest professional and safety standards in the industry.</p>
+        </div>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <h4>Trained & Certified Staff</h4>
+                <p>All technicians undergo rigorous on-the-job training and are certified in their respective cleaning disciplines.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-shield-virus"></i></div>
+                <h4>Infection Control Certified</h4>
+                <p>Senior team members are certified in hospital-grade disinfection and infection control protocols.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-hard-hat"></i></div>
+                <h4>Health & Safety Compliant</h4>
+                <p>We operate in full compliance with Kenya's Occupational Health and Safety standards on every site.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-leaf"></i></div>
+                <h4>Eco-Friendly Approved</h4>
+                <p>Our cleaning products are non-toxic, biodegradable, and approved for use in sensitive environments including healthcare and schools.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-file-contract"></i></div>
+                <h4>Fully Insured</h4>
+                <p>EPRISOL carries comprehensive public liability and employer's liability insurance on all assignments.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-tools"></i></div>
+                <h4>Professional-Grade Equipment</h4>
+                <p>We use only industry-standard, regularly serviced machines for consistent, safe, and high-quality results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INDUSTRIES WE SERVE ===== -->
+    <section class="industries-section" id="industries">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Industries</span>
+            <h2>Sectors We Serve</h2>
+            <p>From hospitality to healthcare, EPRISOL delivers reliable cleaning across all major industries in Kenya.</p>
+        </div>
+        <div class="industry-pills mt-4 justify-content-center">
+            <div class="industry-pill"><i class="fas fa-building"></i> Corporate Offices</div>
+            <div class="industry-pill"><i class="fas fa-warehouse"></i> Warehouses & Logistics</div>
+            <div class="industry-pill"><i class="fas fa-hospital"></i> Healthcare Facilities</div>
+            <div class="industry-pill"><i class="fas fa-utensils"></i> Hotels & Restaurants</div>
+            <div class="industry-pill"><i class="fas fa-school"></i> Schools & Universities</div>
+            <div class="industry-pill"><i class="fas fa-shopping-cart"></i> Retail & Supermarkets</div>
+            <div class="industry-pill"><i class="fas fa-industry"></i> Industrial Plants</div>
+            <div class="industry-pill"><i class="fas fa-plane"></i> Airports & Transport</div>
+            <div class="industry-pill"><i class="fas fa-home"></i> Residential Estates</div>
+            <div class="industry-pill"><i class="fas fa-church"></i> Religious Institutions</div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="my-5" id="testimonials">
+        <div class="section-header">
+            <span class="label">Client Feedback</span>
+            <h2>What Our Clients Say About Us</h2>
+            <p>Over 200 satisfied clients trust EPRISOL for their cleaning needs. Here's what a few have to say.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">EPRISOL is simply the best cleaning company we've worked with. Their professionalism from quoting through to the final sign-off is second to none. Our warehouse has never looked this good.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">KM</div>
+                    <div class="author-info"><h4>Vincent Otieno</h4><p>Operations Lead, Mombasa Road</p></div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">The team's attention to detail and commitment to quality is remarkable. We've been on a monthly contract with EPRISOL for over two years and they've never let us down.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">FM</div>
+                    <div class="author-info"><h4> Pauline Njeri</h4><p>Property Manager, CBD Nairobi</p></div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">We hired EPRISOL for our clinic's disinfection. Their team was well-trained, used certified products, and observed all infection control protocols. Highly recommended for healthcare facilities.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JN</div>
+                    <div class="author-info"><h4>Dr. James Njoroge</h4><p>Clinic Director, Kileleshwa</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUSTED CLIENTS ===== -->
+    <section class="my-5" id="clients">
+        <div class="section-header text-center mx-auto" style="max-width:600px;">
+            <span class="label">Our Clients</span>
+            <h2>Trusted by Leading Organisations</h2>
+            <p>We are proud to serve a diverse portfolio of clients across Kenya's private and public sectors.</p>
+        </div>
+        <div class="clients-strip mt-4">
+            <div class="client-badge">Obradleys Investment Ltd</div>
+            <div class="client-badge">Finix Casino-Hurlingham</div>
+            <div class="client-badge">Raddison Blu Hotel-Upper Hill</div>
+            <div class="client-badge">Sarova Hotel-Nairobi</div>
+            <div class="client-badge">Heavens Gate Church-Nakuru</div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== */
+    <section class="cta-section">
+        <span class="label">Get Started</span>
+        <h2>Ready to Experience the EPRISOL Difference?</h2>
+        <p>Join over 200 satisfied clients across Kenya. Let our certified team deliver the clean, safe, and healthy environment your space deserves.</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-primary btn-lg px-5">Request a Free Quote</a>
+            <a href="tel:+254720025200" class="btn btn-outline-light btn-lg px-5"><i class="fas fa-phone-alt me-2"></i>Call Now</a>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Include Header & Footer -->
+<script src="js/include.js"></script>
+<script>
+    loadHTML("header", "partials/header.html");
+    loadHTML("footer", "partials/footer.html");
+</script>
+
+<script>
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Stats counter animation
+    function animateCounter(el, target) {
+        let current = 0;
+        const increment = Math.ceil(target / 80);
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                el.textContent = target + '+';
+                clearInterval(timer);
+            } else {
+                el.textContent = current + '+';
+            }
+        }, 20);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.stat-num[data-count]').forEach(stat => {
+                    const target = parseInt(stat.dataset.count);
+                    animateCounter(stat, target);
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    const banner = document.querySelector('.stats-banner');
+    if (banner) statsObserver.observe(banner);
+</script>
+
+</body>
+</html>
